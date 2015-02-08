@@ -5,21 +5,29 @@
                                 <li>
                                     <div class="timeline-item">
                                         <h3 class="timeline-header no-border" style="text-align:center;">
-                                        		<% if f.enable == 1 %>
-                                        			<div style="display:inline"><%= f.name %></div>
+                                        <div class="row">
+                                            <% if f.enable == 1 %>
+                                                <div class="col-md-4">
                                         				<% if f.order!=3 %>
-                                        					<a href="./landing/index?op=1&pid=<%=f.id%>" class="up_arrow_box" data-remote="true" style="margin-left:30px">
+                                        					<a href="./landing/index?op=1&pid=<%=f.id%>" class="up_arrow_box" data-remote="true">
                                         					</a>
                                         				<% end %>
 	                                        	<% if f.order!=0 %>
 	                                        		<a href="./landing/index?op=0&pid=<%=f.id%>" style="margin-left:10px" class="down_arrow_box" data-remote="true">
 	                                        		</a>
 	                                        	<% end %>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div style="display:inline"><%= f.name %></div>
+                                                    </div>
+                                            <div class="col-md-4">
                                 			<%= link_to ' Disable?', index_preferences_path(:toggle => 1, :pid => f.id),:remote => true,:class=>"enable" %>        
+                                            </div>
                                         	<% else %>
                                         	<div style="text-decoration:line-through;display:inline;color:#D0D0D0"><%= f.name %></div>
                                         	<%= link_to ' Enable?', index_preferences_path(:toggle => 1, :pid => f.id),:remote => true,:class=>"enable" %>
                                         	<% end %> <br>
+                                            </div>
                                         </h3>
                                     </div>
                                 </li>
