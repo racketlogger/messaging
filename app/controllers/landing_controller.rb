@@ -78,20 +78,20 @@ class LandingController < ApplicationController
 
 def set_preferences
 		# puts "Weekdays:  " + params[:wday_1].to_s + ","+ params[:wday_2].to_s + "," + params[:wday_3].to_s+ "================================================================================"
-		preference = current_user.preferences.where(:name=>"Weekdays").first
+		preference1 = current_user.preferences.where(:name=>"Weekdays").first
 		# puts preference.to_s + "11111111111111111111111111111111111111111111".to_s
-		preference.text = params[:wday_1].to_s + ","+ params[:wday_2].to_s + "," + params[:wday_3].to_s
-		preference.save!
-		# puts "Saturday:  " + params[:stday_1].to_s + ","+ params[:stday_2].to_s + "," + params[:stday_3].to_s+ "================================================================================"
-		preference = current_user.preferences.where(:name=>"Saturday").first
+		preference1.text = params[:wday_1].to_s + ","+ params[:wday_2].to_s + "," + params[:wday_3].to_s
+		preference1.save!
+		# puts "Saturday:  " + params[:stday_1].to_s + ","+ params[:stday_2].to_s + "," + params[:stday_3].to_s+ "==================================================================================================================================================================\n\n\n\n\n\n"
+		preference2 = current_user.preferences.where(:name=>"Saturday").first
 		# puts "8888888888888888888888888"
-		preference.text = params[:stday_1].to_s + ","+ params[:stday_2].to_s + "," + params[:stday_3].to_s
+		preference2.text = params[:stday_1].to_s + ","+ params[:stday_2].to_s + "," + params[:stday_3].to_s
 		# puts "66666666666666666666666666"
-		preference.save!
+		preference2.save!
 		# puts "Sunday:    " + params[:suday_1].to_s + ","+ params[:suday_2].to_s + "," + params[:suday_3].to_s+ "================================================================================"
-		preference = current_user.preferences.where(:name=>"Sunday").first
-		preference.text = params[:suday_1].to_s + ","+ params[:suday_2].to_s + "," + params[:suday_3].to_s
-		preference.save!
+		preference3 = current_user.preferences.where(:name=>"Sunday").first
+		preference3.text = params[:suday_1].to_s + ","+ params[:suday_2].to_s + "," + params[:suday_3].to_s
+		preference3.save!
 		redirect_to index_preferences_path
 end
 

@@ -42,7 +42,6 @@
                         <% flag_saturdays = 0 %>
                         <% flag_sundays = 0 %>
                         <% @time.each do |t| %>
-                            <% @weekdays.each do |f| %>
                                 <% if @weekdays.include?(t.to_s) %>
                                     <% flag_weekdays = 1 %>
                                 <% end %>
@@ -51,7 +50,6 @@
                                 <% end %>
                                 <% if @saturday.include?(t.to_s) %>
                                     <% flag_saturdays = 1 %>
-                                <% end %>
                             <% end %>
                         <% end %>
                         <div class="col-md-12">
@@ -79,6 +77,15 @@
                                                     <% end %>
                                                     <% end %>
                                                     on Saturdays </p>
+                                                <% end %>
+                                                 <% if flag_sundays == 1 %>
+                                                    <p> You prefer to play in the
+                                                    <% @sunday.each do |f| %>
+                                                    <% if f != "" %>
+                                                      <strong> <%= f %>s </strong>,
+                                                    <% end %>
+                                                    <% end %>
+                                                    on Sundays </p>
                                                 <% end %>
                                                     <br/>
                                                     <br/>
