@@ -24,8 +24,12 @@
                                 			<%= link_to ' Disable?', index_preferences_path(:toggle => 1, :pid => f.id),:remote => true,:class=>"enable" %>        
                                             </div>
                                         	<% else %>
-                                        	<div style="text-decoration:line-through;display:inline;color:#D0D0D0"><%= f.name %></div>
+                                            <div class="col-md-4 col-md-offset-4">
+                                        	   <div style="text-decoration:line-through;display:inline;color:#D0D0D0"><%= f.name %></div>
+                                               </div>
+                                            <div class="col-md-4">
                                         	<%= link_to ' Enable?', index_preferences_path(:toggle => 1, :pid => f.id),:remote => true,:class=>"enable" %>
+                                            </div>
                                         	<% end %> <br>
                                             </div>
                                         </h3>

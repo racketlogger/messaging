@@ -17,7 +17,7 @@
         <div class="wrapper row-offcanvas row-offcanvas-left" style="min-height: 633px;">
                 <section class="content-header">
                     <h3 style="text-align:center">
- 						Hi user! Here are your communication preferences <br>
+ 						Hi user! Here are your preferences <br>
                      <small>Click the arrows to set the order of your preferences</small>
                      </h3>
 
@@ -27,7 +27,98 @@
 						<%= render('preference') %>
 					</div>
                 </section>
-             </div>
+                <section class="content">
+                    <div class="row">
+                        <% params[:wday_1] = "" %>
+                        <% params[:wday_2] = "" %>
+                        <% params[:wday_3] = "" %>
+                        <% params[:stday_1] = "" %>
+                        <% params[:stday_2] = "" %>                        
+                        <% params[:stday_3] = "" %>
+                        <% params[:suday_1] = "" %>                        
+                        <% params[:suday_2] = "" %>                        
+                        <% params[:suday_3] = "" %>
+                        <% flag_weekdays = 0 %>
+                        <% flag_saturdays = 0 %>
+                        <% flag_sundays = 0 %>
+                        <% @time.each do |t| %>
+                            <% @weekdays.each do |f| %>
+                                <% if @weekdays.include?(t.to_s) %>
+                                    <% flag_weekdays = 1 %>
+                                <% end %>
+                                <% if @sunday.include?(t.to_s) %>
+                                    <% flag_sundays = 1 %>
+                                <% end %>
+                                <% if @saturday.include?(t.to_s) %>
+                                    <% flag_saturdays = 1 %>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                        <div class="col-md-12">
+                            <ul class="timeline">
+                                <li>
+                                    <div class="timeline-item">
+                                        <h3 class="timeline-header no-border" style="text-align:center;">
+                                            <% if flag_weekdays == 1 or flag_saturdays == 1 or flag_sundays == 1 %>
+                                                <p style="text-align:center"> Currently,</p>
+                                            <% end %>
+                                                <% if flag_weekdays == 1 %>
+                                                    <p> You prefer to play in the
+                                                    <% @weekdays.each do |f| %>
+                                                    <% if f != "" %>
+                                                      <strong> <%= f %>s </strong>,
+                                                    <% end %>
+                                                    <% end %>
+                                                    in the weekdays </p>
+                                                <% end %>
+                                                <% if flag_saturdays == 1 %>
+                                                    <p> You prefer to play in the
+                                                    <% @saturday.each do |f| %>
+                                                    <% if f != "" %>
+                                                      <strong> <%= f %>s </strong>,
+                                                    <% end %>
+                                                    <% end %>
+                                                    on Saturdays </p>
+                                                <% end %>
+                                                    <br/>
+                                                    <br/>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                <h4> On weekdays, I am available: </h4>
+                                                <%= form_tag(set_preferences_path,:method => "get") do %>
+                                                    <%= check_box_tag :wday_1,"morning",false,:wday_1 => params[:wday_1] %> In the morning <p></p>
+                                                    <%= check_box_tag :wday_2,"afternoon",false,:wday_2 => params[:wday_2] %> In the afternoon <p></p>
+                                                    <%= check_box_tag :wday_3,"evening",false,:wday_3 => params[:wday_3] %> In the evening <p></p>       
+                                                </div>
+                                                <div class="col-md-4">
+                                                <h4> On Saturdays, I am available: </h4>
+                                                    <%= check_box_tag :stday_1,"morning",false,:stday_1 => params[:stday_1] %> In the morning <p></p>
+                                                    <%= check_box_tag :stday_2,"afternoon",false,:stday_2 => params[:stday_2] %> In the afternoon <p></p>
+                                                    <%= check_box_tag :stday_3,"evening",false,:stday_3 => params[:stday_3] %> In the evening <p></p>       
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                <h4> On Sundays, I am available: </h4>
+                                                    <%= check_box_tag :suday_1,"morning",false,:suday_1 => params[:suday_1] %> In the morning <p></p>
+                                                    <%= check_box_tag :suday_2,"afternoon",false,:suday_2 => params[:suday_2] %> In the afternoon <p></p>
+                                                    <%= check_box_tag :suday_3,"evening",false,:suday_3 => params[:suday_3] %> In the evening <p></p>       
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <br/>
+
+                                            <div style="text-align:center">
+                                                <%= submit_tag "Submit" %>
+                                                    <% end %>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </section>
+            </div>
         <script src="./AdminLTE   Timeline_files/jquery.min.js"></script>
         <script src="./AdminLTE   Timeline_files/bootstrap.min.js" type="text/javascript"></script>
         <!-- AdminLTE App -->

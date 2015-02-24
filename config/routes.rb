@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :preferences
 
   devise_for :users
+  get 'landing/set_preferences' => 'landing#set_preferences', :as => :set_preferences
   root 'landing#index', :as => :index_preferences
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
